@@ -24,6 +24,15 @@ import numpy as np
 from sklearn.metrics import mean_absolute_error
 from river.drift import KSWIN
 
+HORIZON = 5
+# Target column (features/target.py) is y_t = ln(Close[t+5]/Close[t]),
+# computed on the full continuous df before this loop ever runs. At real
+# time i, the target for any row j > i - HORIZON is not yet observable
+# (it needs Close[j+5], which is in the future relative to i). Every
+# .fit() call below is therefore capped at i + 1 - HORIZON, not i + 1,
+# so training never uses a label that wouldn't actually exist yet at
+# that point in a live deployment.
+
 
 def walk_forward_predict(df, feature_columns, target_column,
                           build_model_fn, initial_train_size,
@@ -54,7 +63,8 @@ def walk_forward_predict(df, feature_columns, target_column,
     volatility = df["Volatility_20"].values
 
     model = build_model_fn()
-    model.fit(X_full.iloc[:initial_train_size], y_full.iloc[:initial_train_size])
+    init_fit_end = initial_train_size - HORIZON
+    model.fit(X_full.iloc[:init_fit_end], y_full.iloc[:init_fit_end])
 
     # Persistent KSWIN detector, seeded on all volatility history up
     # to the start of evaluation, then updated one value at a time as
@@ -101,7 +111,8 @@ def walk_forward_predict(df, feature_columns, target_column,
                 # the training distribution meaningfully rather than
                 # being diluted by a huge, mostly-unchanged history.
                 train_start = max(0, i + 1 - train_window_size)
-            model.fit(X_full.iloc[train_start:i + 1], y_full.iloc[train_start:i + 1])
+            fit_end = i + 1 - HORIZON
+            model.fit(X_full.iloc[train_start:fit_end], y_full.iloc[train_start:fit_end])
             retrain_points.append(eval_relative_idx)
             rows_since_last_retrain = 0
 

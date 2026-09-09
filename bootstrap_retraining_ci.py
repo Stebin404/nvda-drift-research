@@ -12,10 +12,12 @@ the underlying sample is small, rather than a misleadingly narrow one.
 
 import numpy as np
 
-# Your actual per-window MAE values from Table V.
-never = np.array([0.0627, 0.0726, 0.0613])
-fixed = np.array([0.0710, 0.0752, 0.0472])
-drift_triggered = np.array([0.0716, 0.0712, 0.0513])
+# Your actual per-window MAE values from Table V (frozen dataset,
+# data/nvda_ohlcv_frozen.csv, post purge-gap fix -- see
+# evaluation/rolling_origin.py and retraining/retraining_engine.py).
+never = np.array([0.064293, 0.072373, 0.070024])
+fixed = np.array([0.073753, 0.070878, 0.050098])
+drift_triggered = np.array([0.070445, 0.076503, 0.053830])
 
 N_BOOTSTRAP = 10000
 rng = np.random.default_rng(42)

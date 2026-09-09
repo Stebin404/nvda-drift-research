@@ -90,10 +90,19 @@ def generate_rolling_folds(n_rows, n_folds=5, min_train_fraction=0.5, test_fract
     return folds
 
 
+HORIZON = 5
+# Target (features/target.py) is y_t = ln(Close[t+5]/Close[t]), computed on
+# the full continuous price series before fold slicing. A training row at
+# position train_end-1 therefore has a target that depends on prices at
+# train_end .. train_end+4 -- i.e. the first HORIZON rows of that fold's
+# test window. Purging the last HORIZON rows from every fold's training
+# set removes this leakage; see PATCH NOTE in run_rolling_fold below.
+
+
 def run_rolling_fold(df, fold, build_model_fn, feature_columns, target_column="Target"):
     """
-    Trains a fresh model on df[:fold['train_end']] and evaluates on
-    df[fold['test_start']:fold['test_end']].
+    Trains a fresh model on df[:fold['train_end'] - HORIZON] and evaluates
+    on df[fold['test_start']:fold['test_end']].
 
     build_model_fn must be a zero-argument constructor returning an
     UNFIT estimator with .fit(X, y) and .predict(X) -- pass the
@@ -104,16 +113,23 @@ def run_rolling_fold(df, fold, build_model_fn, feature_columns, target_column="T
 
     df must already have feature_columns and target_column present
     (i.e. create_features() and create_target() already applied).
+
+    PATCH NOTE (purge gap): the last HORIZON rows before train_end are
+    dropped from training. Their Target values are computed from prices
+    that fall inside this fold's test window (see HORIZON comment above),
+    so including them would leak test-period prices into training.
     """
     fold_df = df.iloc[:fold["test_end"]].reset_index(drop=True)
 
     X = fold_df[feature_columns]
     y = fold_df[target_column]
 
-    X_train = X.iloc[:fold["train_end"]]
+    purge_end = fold["train_end"] - HORIZON
+
+    X_train = X.iloc[:purge_end]
     X_test = X.iloc[fold["test_start"]:fold["test_end"]]
 
-    y_train = y.iloc[:fold["train_end"]]
+    y_train = y.iloc[:purge_end]
     y_test = y.iloc[fold["test_start"]:fold["test_end"]]
 
     model = build_model_fn()
