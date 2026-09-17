@@ -44,6 +44,7 @@ def run_bridge_experiment(
     min_train_fraction=0.5,
     test_fraction=0.08,
     tolerance=30,
+    one_sided=True,
     earnings_csv_path="data/earnings_dates_FINAL.csv",
 ):
     full_df = load_stock_data(ticker)
@@ -81,7 +82,7 @@ def run_bridge_experiment(
 
             for detector_name, detector_fn in DETECTORS.items():
                 alarms = detector_fn(stream)
-                metrics = evaluate_detector(alarms, ground_truth, tolerance=tolerance)
+                metrics = evaluate_detector(alarms, ground_truth, tolerance=tolerance, one_sided=one_sided)
 
                 results[feature_name][detector_name]["per_fold"].append({
                     "fold_id": fold["fold_id"],
@@ -90,6 +91,8 @@ def run_bridge_experiment(
                     "precision": metrics["precision"],
                     "recall": metrics["recall"],
                     "avg_delay": metrics["avg_delay"],
+                    "matched_alarms": metrics["matched_alarms"],
+                    "matched_truth": metrics["matched_truth"],
                 })
 
     for feature_name in FEATURE_STREAMS_TO_TEST:

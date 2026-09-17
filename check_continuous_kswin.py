@@ -24,9 +24,10 @@ volatility_stream = df["Volatility_20"].values
 kswin_alarms = run_kswin(volatility_stream)
 earnings_ground_truth = get_earnings_ground_truth(df)
 
-for tolerance in [15, 30]:
-    metrics = evaluate_detector(kswin_alarms, earnings_ground_truth, tolerance=tolerance)
-    print(f"\ntolerance={tolerance}")
-    print(f"  alarms={len(kswin_alarms)}  ground_truth={len(earnings_ground_truth)}")
-    print(f"  precision={metrics['precision']:.3f}  recall={metrics['recall']:.3f}  "
-          f"avg_delay={metrics['avg_delay']}  matched={metrics['matched_truth']}")
+for one_sided in [True, False]:
+    for tolerance in [15, 30]:
+        metrics = evaluate_detector(kswin_alarms, earnings_ground_truth, tolerance=tolerance, one_sided=one_sided)
+        print(f"\none_sided={one_sided} tolerance={tolerance}")
+        print(f"  alarms={len(kswin_alarms)}  ground_truth={len(earnings_ground_truth)}")
+        print(f"  precision={metrics['precision']:.3f}  recall={metrics['recall']:.3f}  "
+              f"avg_delay={metrics['avg_delay']}  matched={metrics['matched_truth']}")

@@ -17,7 +17,7 @@ import numpy as np
 # evaluation/rolling_origin.py and retraining/retraining_engine.py).
 never = np.array([0.064293, 0.072373, 0.070024])
 fixed = np.array([0.073753, 0.070878, 0.050098])
-drift_triggered = np.array([0.070445, 0.076503, 0.053830])
+drift_triggered = np.array([0.071582, 0.077924, 0.053830])  # updated post KSWIN-seed fix
 
 N_BOOTSTRAP = 10000
 rng = np.random.default_rng(42)

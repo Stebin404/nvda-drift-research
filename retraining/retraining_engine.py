@@ -71,7 +71,13 @@ def walk_forward_predict(df, feature_columns, target_column,
     # we walk forward -- this is the same usage pattern as
     # drift/kswin_detector.py's run_kswin, just kept alive across the
     # whole loop instead of rebuilt every row.
-    kswin_detector = KSWIN()
+    #
+    # seed=42 fixed to match drift/kswin_detector.py's DEFAULT_KSWIN_SEED
+    # -- river's KSWIN does internal random sub-sampling and is
+    # non-deterministic with seed=None, which previously made every
+    # "drift_triggered" retraining run (and therefore Tables IV/V)
+    # non-reproducible across repeated executions on the same data.
+    kswin_detector = KSWIN(seed=42)
     for v in volatility[:initial_train_size]:
         kswin_detector.update(float(v))
 

@@ -37,6 +37,7 @@ def run_full_rolling_evaluation(
     min_train_fraction=0.5,
     test_fraction=0.08,
     tolerance=10,
+    one_sided=True,
     earnings_csv_path="data/earnings_dates_FINAL.csv",
 ):
     """
@@ -74,7 +75,7 @@ def run_full_rolling_evaluation(
 
         for detector_name, detector_fn in DETECTORS.items():
             alarms = detector_fn(error_stream)
-            metrics = evaluate_detector(alarms, ground_truth, tolerance=tolerance)
+            metrics = evaluate_detector(alarms, ground_truth, tolerance=tolerance, one_sided=one_sided)
 
             results[detector_name]["per_fold"].append({
                 "fold_id": fold["fold_id"],
@@ -83,6 +84,8 @@ def run_full_rolling_evaluation(
                 "precision": metrics["precision"],
                 "recall": metrics["recall"],
                 "avg_delay": metrics["avg_delay"],
+                "matched_alarms": metrics["matched_alarms"],
+                "matched_truth": metrics["matched_truth"],
             })
 
     for detector_name in DETECTORS:
