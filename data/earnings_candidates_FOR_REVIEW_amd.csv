@@ -1,0 +1,47 @@
+date,source_url,filing_type,is_earnings,reviewer_note
+2018-01-30,https://www.sec.gov/Archives/edgar/data/2488/000000248818000014/a20180130q417earnings8-k.htm,8-K,TRUE,Filename confirms Q4 FY17 earnings; consistent with confirmed pattern
+2018-04-25,https://www.sec.gov/Archives/edgar/data/2488/000000248818000058/a20180425q118earnings8-k.htm,8-K,TRUE,Filename confirms Q1 FY18 earnings
+2018-05-08,https://www.sec.gov/Archives/edgar/data/2488/000000248818000086/amd2018annualmeeting8-k.htm,8-K,FALSE,CONFIRMED via SEC index header: Item 5.07 Submission of Matters to a Vote of Security Holders (annual meeting results)
+2018-07-25,https://www.sec.gov/Archives/edgar/data/2488/000000248818000124/a20180725q218earnings8-k.htm,8-K,TRUE,Filename confirms Q2 FY18 earnings
+2018-08-06,https://www.sec.gov/Archives/edgar/data/2488/000000248818000130/amd_form8-kneolti2018.htm,8-K,FALSE,CONFIRMED via SEC index header: Item 5.02 Compensatory Arrangements (NEO long-term incentive plan)
+2018-10-24,https://www.sec.gov/Archives/edgar/data/2488/000000248818000186/a20181024q318earnings8-k.htm,8-K,TRUE,Filename confirms Q3 FY18 earnings
+2019-01-29,https://www.sec.gov/Archives/edgar/data/2488/000000248819000004/a20190129q418earnings8-k.htm,8-K,TRUE,Filename confirms Q4 FY18 earnings
+2019-04-30,https://www.sec.gov/Archives/edgar/data/2488/000000248819000043/a20190430q119earnings8-k.htm,8-K,TRUE,Filename confirms Q1 FY19 earnings
+2019-07-30,https://www.sec.gov/Archives/edgar/data/2488/000000248819000102/a20190730q219earnings8-k.htm,8-K,TRUE,Filename confirms Q2 FY19 earnings
+2019-08-08,https://www.sec.gov/Archives/edgar/data/2488/000000248819000113/amdform8k08082019.htm,8-K,FALSE,"CONFIRMED via full filing text: Item 5.02 -- CEO/CTO executive compensation awards (Lisa Su LTI grant), not earnings"
+2019-10-29,https://www.sec.gov/Archives/edgar/data/2488/000000248819000157/a20191029q319earnings8.htm,8-K,TRUE,Filename confirms Q3 FY19 earnings
+2020-01-28,https://www.sec.gov/Archives/edgar/data/2488/000000248820000006/a20200128q419earnings8.htm,8-K,TRUE,Filename confirms Q4 FY19 earnings
+2020-04-28,https://www.sec.gov/Archives/edgar/data/2488/000000248820000048/a2020q1earnings8-k.htm,8-K,TRUE,Filename confirms Q1 FY20 earnings
+2020-07-28,https://www.sec.gov/Archives/edgar/data/2488/000000248820000101/amd-20200728.htm,8-K,TRUE,CONFIRMED via SEC index header: Item 2.02 Results of Operations and Financial Condition (Q2 2020)
+2020-10-27,https://www.sec.gov/Archives/edgar/data/2488/000119312520278572/d40046d8k.htm,8-K,FALSE,"CONFIRMED via filing text: Xilinx merger announcement press release (Item 1.01/7.01), not earnings"
+2020-10-27,https://www.sec.gov/Archives/edgar/data/2488/000119312520277468/d67182d8k.htm,8-K,FALSE,"CONFIRMED via filing text: Xilinx Merger Agreement terms (Item 1.01), not earnings -- same-day Xilinx announcement as row above"
+2020-10-27,https://www.sec.gov/Archives/edgar/data/2488/000000248820000161/amd-20201027.htm,8-K,TRUE,"CONFIRMED via SEC index header and filing text: Item 2.02 Results of Operations, Q3 2020 earnings (filed same day as the two Xilinx merger 8-Ks above -- AMD announced Q3 earnings and the Xilinx deal on the same day)"
+2021-01-26,https://www.sec.gov/Archives/edgar/data/2488/000000248821000009/amd-20210126.htm,8-K,TRUE,CONFIRMED via SEC index header: Item 2.02 Results of Operations (Q4 FY20)
+2021-04-27,https://www.sec.gov/Archives/edgar/data/2488/000000248821000054/amd-20210427.htm,8-K,TRUE,CONFIRMED via SEC index header: Item 2.02 Results of Operations (Q1 2021)
+2021-07-27,https://www.sec.gov/Archives/edgar/data/2488/000000248821000114/amd-20210727.htm,8-K,TRUE,CONFIRMED via SEC index header: Item 2.02 Results of Operations (Q2 2021)
+2021-10-26,https://www.sec.gov/Archives/edgar/data/2488/000000248821000176/amd-20211026.htm,8-K,TRUE,"Consistent with confirmed quarterly earnings pattern (Q3 2021) -- not individually header-confirmed, high confidence"
+2022-01-27,https://www.sec.gov/Archives/edgar/data/2488/000000248822000009/amd-20220127.htm,8-K,FALSE,"CONFIRMED via SEC index header: Item 8.01 Other Events -- NOT earnings, despite date falling near the usual Q4 window. The real Q4/FY21 earnings 8-K is the next row (2022-02-01)."
+2022-02-01,https://www.sec.gov/Archives/edgar/data/2488/000000248822000014/amd-20220201.htm,8-K,TRUE,CONFIRMED via SEC index header: Item 2.02 Results of Operations (actual Q4/FY21 earnings release)
+2022-02-10,https://www.sec.gov/Archives/edgar/data/2488/000000248822000026/amd-20220209.htm,8-K,FALSE,"CONFIRMED via filing text: Xilinx acquisition regulatory-approval/HSR Act waiting-period announcement (Item 8.01), not earnings"
+2022-05-03,https://www.sec.gov/Archives/edgar/data/2488/000000248822000074/amd-20220429.htm,8-K,TRUE,Consistent with confirmed quarterly earnings pattern (Q1 2022) -- high confidence
+2022-08-02,https://www.sec.gov/Archives/edgar/data/2488/000000248822000120/amd-20220802.htm,8-K,TRUE,CONFIRMED via filing text: earnings press release language (Q2 2022 financial results)
+2022-11-01,https://www.sec.gov/Archives/edgar/data/2488/000000248822000168/amd-20221101.htm,8-K,TRUE,Consistent with confirmed quarterly earnings pattern (Q3 2022) -- high confidence
+2022-11-08,https://www.sec.gov/Archives/edgar/data/2488/000000248822000172/amd-20221103.htm,8-K,FALSE,"CONFIRMED via full filing text: Item 2.03/8.01 -- new .0B commercial paper program, not earnings"
+2023-01-31,https://www.sec.gov/Archives/edgar/data/2488/000000248823000007/amd-20230131.htm,8-K,TRUE,Consistent with confirmed quarterly earnings pattern (Q4/FY22) -- high confidence
+2023-05-02,https://www.sec.gov/Archives/edgar/data/2488/000000248823000074/amd-20230502.htm,8-K,TRUE,Consistent with confirmed quarterly earnings pattern (Q1 2023) -- high confidence
+2023-08-01,https://www.sec.gov/Archives/edgar/data/2488/000000248823000135/amd-20230801.htm,8-K,TRUE,Consistent with confirmed quarterly earnings pattern (Q2 2023) -- high confidence
+2023-10-31,https://www.sec.gov/Archives/edgar/data/2488/000000248823000192/amd-20231031.htm,8-K,TRUE,Consistent with confirmed quarterly earnings pattern (Q3 2023) -- high confidence
+2024-01-30,https://www.sec.gov/Archives/edgar/data/2488/000000248824000009/amd-20240130.htm,8-K,TRUE,Consistent with confirmed quarterly earnings pattern (Q4/FY23) -- high confidence
+2024-04-30,https://www.sec.gov/Archives/edgar/data/2488/000000248824000054/amd-20240430.htm,8-K,TRUE,Consistent with confirmed quarterly earnings pattern (Q1 2024) -- high confidence
+2024-07-22,https://www.sec.gov/Archives/edgar/data/2488/000000248824000115/amd-20240720.htm,8-K,FALSE,"CONFIRMED via full filing text: Item 5.02 -- Victor Peng (President) retirement announcement, not earnings"
+2024-07-30,https://www.sec.gov/Archives/edgar/data/2488/000000248824000121/amd-20240730.htm,8-K,TRUE,CONFIRMED via filing text: earnings press release language (Q2 2024 financial results)
+2024-10-29,https://www.sec.gov/Archives/edgar/data/2488/000000248824000161/amd-20241029.htm,8-K,TRUE,CONFIRMED via SEC index header: Item 2.02 Results of Operations (Q3 2024)
+2025-02-04,https://www.sec.gov/Archives/edgar/data/2488/000000248825000009/amd-20250204.htm,8-K,TRUE,CONFIRMED via filing text: earnings press release language (Q4/FY24 financial results)
+2025-05-06,https://www.sec.gov/Archives/edgar/data/2488/000000248825000045/amd-20250506.htm,8-K,TRUE,Consistent with confirmed quarterly earnings pattern (Q1 2025) -- high confidence
+2025-08-05,https://www.sec.gov/Archives/edgar/data/2488/000000248825000106/amd-20250805.htm,8-K,TRUE,Consistent with confirmed quarterly earnings pattern (Q2 2025) -- high confidence
+2025-10-27,https://www.sec.gov/Archives/edgar/data/2488/000119312525250803/d917887d8k.htm,8-K,FALSE,"CONFIRMED via full filing text: Item 2.01/7.01 -- completed sale of ZT Group Int'l to Sanmina, not earnings"
+2025-11-04,https://www.sec.gov/Archives/edgar/data/2488/000000248825000163/amd-20251104.htm,8-K,TRUE,CONFIRMED via filing text: Item 2.02 Results of Operations (Q3 2025)
+2026-01-20,https://www.sec.gov/Archives/edgar/data/2488/000000248826000002/amd-20260116.htm,8-K,FALSE,"CONFIRMED via third-party filing summary: new independent board director appointment (KC McClure), not earnings"
+2026-02-03,https://www.sec.gov/Archives/edgar/data/2488/000000248826000014/amd-20260203.htm,8-K,TRUE,CONFIRMED via third-party filing summary: Q4 and full-year 2025 results
+2026-05-05,https://www.sec.gov/Archives/edgar/data/2488/000000248826000072/amd-20260505.htm,8-K,TRUE,CONFIRMED via filing text: Item 2.02 Results of Operations (Q1 2026)
+2026-08-04,https://www.sec.gov/Archives/edgar/data/2488/000000248826000121/amd-20260804.htm,8-K,TRUE,Consistent with confirmed quarterly earnings pattern (Q2 2026) -- high confidence

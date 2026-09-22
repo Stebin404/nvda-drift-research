@@ -2,7 +2,11 @@ import os
 import yfinance as yf
 import pandas as pd
 
-CACHE_PATH = os.path.join(os.path.dirname(__file__), "nvda_ohlcv_frozen.csv")
+CACHE_DIR = os.path.dirname(__file__)
+
+
+def _cache_path_for(ticker):
+    return os.path.join(CACHE_DIR, f"{ticker.lower()}_ohlcv_frozen.csv")
 
 
 def load_stock_data(
@@ -14,12 +18,19 @@ def load_stock_data(
     # revises historical adjusted-close values (e.g. after new dividend
     # data attaches), so re-pulling the "same" date range on different
     # days can silently change every downstream number (see repo notes /
-    # paper Limitations). Once a frozen CSV exists for this ticker, it
-    # is always preferred over a live pull, so every script in this
-    # repo reads the exact same data from here to submission.
-    cache_path = CACHE_PATH if ticker == "NVDA" else None
+    # paper Limitations). Once a frozen CSV exists for a ticker, it is
+    # always preferred over a live pull, so every script in this repo
+    # reads the exact same data from here to submission.
+    #
+    # NOTE (multi-asset expansion): this used to only cache NVDA
+    # (hardcoded ticker == "NVDA" check). Any other ticker silently fell
+    # through to an uncached live pull, which is a reproducibility gap,
+    # not just an inconvenience -- fixed by keying the cache filename
+    # off the ticker itself. Existing nvda_ohlcv_frozen.csv is read
+    # unchanged (case-insensitive match on "nvda").
+    cache_path = _cache_path_for(ticker)
 
-    if cache_path and os.path.exists(cache_path):
+    if os.path.exists(cache_path):
         df = pd.read_csv(cache_path, parse_dates=["Date"])
         return df
 
@@ -35,7 +46,6 @@ def load_stock_data(
 
     df.reset_index(inplace=True)
 
-    if cache_path:
-        df.to_csv(cache_path, index=False)
+    df.to_csv(cache_path, index=False)
 
     return df

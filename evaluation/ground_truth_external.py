@@ -120,7 +120,7 @@ def get_earnings_ground_truth_for_test_fold(
     full_df,
     test_fold_start_index,
     test_fold_end_index,
-    csv_path="data/earnings_dates.csv",
+    csv_path=DEFAULT_GROUND_TRUTH_PATH,
     date_column="Date",
 ):
     """

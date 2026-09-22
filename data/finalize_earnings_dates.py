@@ -19,22 +19,41 @@ Output: data/earnings_dates_FINAL.csv
 
 This is deliberately written to a NEW file (earnings_dates_FINAL.csv)
 rather than overwriting earnings_dates.csv directly, so the original
-237-row full 8-K list is preserved for any future re-classification
-or audit, and the final file is named distinctly to avoid confusion
-between "all 8-Ks" and "confirmed earnings only."
+full 8-K list is preserved for any future re-classification or audit,
+and the final file is named distinctly to avoid confusion between
+"all 8-Ks" and "confirmed earnings only."
 
-After running this, evaluation/ground_truth_external.py should point
-at earnings_dates_FINAL.csv as the canonical ground-truth source.
+After running this, evaluation/ground_truth_external.py should be
+called with earnings_csv_path pointing at the ticker's FINAL file as
+the canonical ground-truth source for that ticker.
+
+Usage:
+    python data/finalize_earnings_dates.py --ticker NVDA
+    python data/finalize_earnings_dates.py --ticker AMD
+    python data/finalize_earnings_dates.py --ticker TSLA
+    python data/finalize_earnings_dates.py --ticker JNJ
 """
 
+import argparse
 import pandas as pd
-
-CANDIDATES_PATH = "data/earnings_candidates_FOR_REVIEW.csv"
-OUTPUT_PATH = "data/earnings_dates_FINAL.csv"
 
 
 def main():
-    df = pd.read_csv(CANDIDATES_PATH)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--ticker", required=True)
+    args = parser.parse_args()
+    ticker = args.ticker
+
+    candidates_path = (
+        "data/earnings_candidates_FOR_REVIEW.csv" if ticker == "NVDA"
+        else f"data/earnings_candidates_FOR_REVIEW_{ticker.lower()}.csv"
+    )
+    output_path = (
+        "data/earnings_dates_FINAL.csv" if ticker == "NVDA"
+        else f"data/earnings_dates_FINAL_{ticker.lower()}.csv"
+    )
+
+    df = pd.read_csv(candidates_path)
 
     # Normalize the is_earnings column to handle any case variation
     # (TRUE, true, True) or stray whitespace from manual editing.
@@ -45,7 +64,7 @@ def main():
         raise ValueError(
             f"Found unexpected is_earnings values: {unexpected_values}. "
             f"Every row must be exactly TRUE or FALSE. Fix "
-            f"{CANDIDATES_PATH} before re-running this script."
+            f"{candidates_path} before re-running this script."
         )
 
     confirmed = df[df["is_earnings"] == "TRUE"].copy()
@@ -53,17 +72,18 @@ def main():
 
     confirmed = confirmed[["date", "source_url"]].sort_values("date").reset_index(drop=True)
 
-    confirmed.to_csv(OUTPUT_PATH, index=False)
+    confirmed.to_csv(output_path, index=False)
 
+    print(f"Ticker: {ticker}")
     print(f"Total reviewed candidates: {len(df)}")
     print(f"Confirmed earnings dates (TRUE): {len(confirmed)}")
     print(f"Rejected as non-earnings (FALSE): {rejected_count}")
-    print(f"\nFinal ground-truth file written to: {OUTPUT_PATH}")
+    print(f"\nFinal ground-truth file written to: {output_path}")
     print(
-        "\nNext step: update evaluation/ground_truth_external.py's "
-        "default csv_path to point at this file instead of "
-        "data/earnings_dates.csv, or pass csv_path explicitly when "
-        "calling its functions."
+        "\nNext step: pass earnings_csv_path="
+        f"'{output_path}' when calling "
+        "run_full_rolling_evaluation() / run_bridge_experiment() for "
+        f"{ticker}."
     )
 
 

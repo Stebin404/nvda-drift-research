@@ -10,6 +10,15 @@ FEATURES = [
     "Momentum_10"
 ]
 
+FEATURES_SCALE_FREE = [
+    "Log_Return",
+    "Volatility_20",
+    "Price_to_MA20",
+    "Price_to_MA50",
+    "Volume_Change",
+    "Momentum_10_Pct"
+]
+
 
 def build_lightgbm_model():
     """

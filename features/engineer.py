@@ -42,6 +42,10 @@ def create_features(df):
         df["Close"].shift(10)
     )
 
+    df["Price_to_MA20"] = df["Close"] / df["MA_20"]
+    df["Price_to_MA50"] = df["Close"] / df["MA_50"]
+    df["Momentum_10_Pct"] = df["Close"] / df["Close"].shift(10) - 1
+
     df.dropna(inplace=True)
 
     return df
