@@ -81,8 +81,11 @@ CANDIDATE_WINDOWS = {
     ],
     "TSLA": [
         (1, 15, 31),
+        (2, 1, 10),   # early Feb spillover (e.g. 2018-02-07)
         (4, 15, 30),
+        (5, 1, 10),   # early May spillover (e.g. 2018-05-02)
         (7, 15, 31),
+        (8, 1, 10),   # early Aug spillover (e.g. 2018-08-01)
         (10, 15, 31),
     ],
     "JNJ": [
