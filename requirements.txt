@@ -1,11 +1,21 @@
-yfinance
-pandas
-numpy
-scikit-learn
-lightgbm
-xgboost
-river
-scipy
-streamlit
-plotly
-requests
+# Pinned to the exact versions this repo's tables were (re)generated and
+# verified against (TODO item #6a). This matters specifically for
+# `river`: this paper documents a KSWIN non-determinism bug that was
+# fixed by seeding (drift/kswin_detector.py, DEFAULT_KSWIN_SEED = 42) --
+# a river version bump can change KSWIN's internal sub-sampling behavior
+# and silently shift alarm timings even with the same seed, which is
+# exactly what happened during this revision pass (see README.md,
+# "Reproducibility notes"). Do not loosen these pins without re-running
+# rebuild_tables.py / rebuild_retraining_tables.py and checking the
+# output against the paper.
+yfinance==1.7.0
+pandas==2.3.3
+numpy==2.2.6
+scikit-learn==1.7.2
+lightgbm==4.7.0
+xgboost==3.2.0
+river==0.22.0
+scipy==1.15.3
+streamlit==1.64.0
+plotly==7.1.0
+requests==2.34.2
